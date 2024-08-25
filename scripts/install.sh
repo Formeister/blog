@@ -12,12 +12,36 @@ source ./variables.sh
 
 cd ..
 
+# Check that the 'vendor' directory and the 'vendor/bin/sail' file exist.
+SAIL_INSTALLED=0
+
+if [ -d "vendor" ] && [ -f "vendor/bin/sail" ]; then
+    SAIL_INSTALLED=1
+fi
+
 # Copy the .env.example file to .env file.
 if [ ! -f ".env" ]; then
   echo -e "${COLOR_LIGHT_BLUE}Copying .env.example file to .env file...${COLOR_END_COLOR}"
   cp .env.example .env
 fi
 read -p "$(echo -e "${COLOR_LIGHT_BLUE}Make changes to the .env file now if necessary. If everything is ready press enter to continue. [Enter]${COLOR_END_COLOR}")"
+
+# Checking if Laravel Sail is already installed.
+if [ $SAIL_INSTALLED -eq 1 ]; then
+    echo -e "${COLOR_LIGHT_BLUE}Laravel Sail appears to be installed already.${COLOR_END_COLOR}"
+else
+    echo -e "${COLOR_LIGHT_BLUE}Laravel Sail Installation...${COLOR_END_COLOR}"
+
+    # Running a Docker container to install dependencies.
+    docker run --rm \
+        -u "$(id -u):$(id -g)" \
+        -v "$(pwd):/var/www/html" \
+        -w /var/www/html \
+        laravelsail/php83-composer:latest \
+        composer install --ignore-platform-reqs
+
+    echo -e "${COLOR_GREEN}Laravel Sail installed successfully.${COLOR_END_COLOR}"
+fi
 
 SAIL="./vendor/bin/sail"
 

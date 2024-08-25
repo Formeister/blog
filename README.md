@@ -2,6 +2,8 @@
 
 ## Local environment
 
+If you're developing on Linux and Docker Compose is already installed, you can follow instructions below to manage the project.
+
 ### Run installation script
 
 Navigate to the project root directory and execute the installation script to set up your local development environment:
