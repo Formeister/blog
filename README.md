@@ -12,6 +12,8 @@ Navigate to the project root directory and execute the installation script to se
 
 `./scripts/install.sh` to execute.
 
+The docker containers should be running by now, as well as Vite development server.
+
 ### Starting and stopping environment
 
 #### Start the environment

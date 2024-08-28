@@ -57,9 +57,16 @@ echo -e "${COLOR_LIGHT_BLUE}Installing NPM dependencies...${COLOR_END_COLOR}"
 $SAIL npm install
 echo -e "${COLOR_GREEN}NPM dependencies installed successfully.${COLOR_END_COLOR}"
 
+echo -e "${COLOR_LIGHT_BLUE}Generating application key...${COLOR_END_COLOR}"
+$SAIL artisan key:generate
+echo -e "${COLOR_GREEN}Application key generated.${COLOR_END_COLOR}"
+
 echo -e "${COLOR_LIGHT_BLUE}Running migrations...${COLOR_END_COLOR}"
-$SAIL artisan migrate --seed
+$SAIL artisan migrate:fresh --seed
 echo -e "${COLOR_GREEN}Migrations ran successfully.${COLOR_END_COLOR}"
 
 echo -e "${COLOR_GREEN}Installation complete.${COLOR_END_COLOR}"
 
+echo -e "${COLOR_LIGHT_BLUE}Running NPM build...${COLOR_END_COLOR}"
+$SAIL npm run dev
+echo -e "${COLOR_GREEN}NPM build ran successfully.${COLOR_END_COLOR}"
