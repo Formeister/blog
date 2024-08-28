@@ -6,6 +6,9 @@ If you're developing on Linux and Docker Compose is already installed, you can f
 
 ### Run installation script
 
+The default settings in the `.env` file created/copied by script should generally be fine.  
+The project address is http://localhost by default.
+
 Navigate to the project root directory and execute the installation script to set up your local development environment:
 
 `chmod +x ./scripts/install.sh` to set permissions.
