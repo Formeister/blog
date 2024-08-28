@@ -43,3 +43,31 @@ More complex command with `--` examples:
 `make sail -- up -d` to start Sail in detached mode.
 
 `make sail -- build --no-cache` to build without cache.
+
+## Usage
+
+### Test user
+
+Test user has been created with login credentials:
+
+E-mail: `user@example.com`  
+Password: `asdasdasd`
+
+### API token
+
+To create API Bearer token:
+
+`/tokens/create/api`
+
+### Tests
+
+#### Tests created:
+
+`tests/Feature/CommentApiControllerTest.php`
+`tests/Feature/ArticleApiControllerTest.php`
+
+#### Test run:
+
+In app container (`make sail`):
+
+`php artisan test`

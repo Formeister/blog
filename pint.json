@@ -1,0 +1,19 @@
+{
+    "preset": "laravel",
+    "exclude": [
+        "bootstrap/cache",
+        "node_modules",
+        "storage",
+        "vendor"
+    ],
+    "rules": {
+        "binary_operator_spaces": {
+            "default": "align_single_space_minimal",
+            "operators": {
+                "=": "align_single_space_minimal"
+            }
+        },
+        "declare_strict_types": true,
+        "not_operator_with_successor_space": false
+    }
+}

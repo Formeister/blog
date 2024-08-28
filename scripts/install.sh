@@ -58,7 +58,7 @@ $SAIL npm install
 echo -e "${COLOR_GREEN}NPM dependencies installed successfully.${COLOR_END_COLOR}"
 
 echo -e "${COLOR_LIGHT_BLUE}Running migrations...${COLOR_END_COLOR}"
-$SAIL artisan migrate
+$SAIL artisan migrate --seed
 echo -e "${COLOR_GREEN}Migrations ran successfully.${COLOR_END_COLOR}"
 
 echo -e "${COLOR_GREEN}Installation complete.${COLOR_END_COLOR}"

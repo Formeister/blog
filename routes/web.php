@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+use App\Http\Controllers\ApiTokenController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -12,7 +16,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -23,5 +27,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Article and comment routes for authenticated users.
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('articles', ArticleController::class)->except(['index', 'show']);
+
+    Route::get('/tokens/create/{tokenName}', ApiTokenController::class);
+});
+
+// Article routes.
+Route::resource('articles', ArticleController::class)->only(['index', 'show']);
 
 require __DIR__.'/auth.php';
